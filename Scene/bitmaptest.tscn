@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cril5vmewcbqo"]
+
+[ext_resource type="Script" path="res://Scene/bitmaptest.gd" id="1_x30xs"]
+
+[node name="TerrainTest" type="Node2D"]
+script = ExtResource("1_x30xs")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(41, 770, 166, 656, 204, 588, 204, 556, 225, 508, 261, 508, 312, 491, 338, 580, 346, 599, 435, 611, 492, 601, 537, 567, 556, 548, 621, 448, 636, 440, 691, 438, 723, 491, 755, 550, 780, 573, 816, 578, 855, 571, 920, 533, 933, 533, 952, 556, 1043, 567, 1088, 537, 1179, 429, 1187, 404, 1187, 380, 1213, 287, 1244, 154, 1278, 139, 1304, 128, 1473, 327, 1575, 391, 1600, 647, 1605, 713, 1346, 840, 619, 885, 79, 857, -38, 866, -215, 838, -228, 662, -194, 641, -88, 582, -65, 656, -25, 703)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
