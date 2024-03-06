@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ditoou4g7rmlj"]
+
+[ext_resource type="PackedScene" uid="uid://cril5vmewcbqo" path="res://Scene/bitmaptest.tscn" id="1_enh40"]
+[ext_resource type="PackedScene" uid="uid://bbecy0lg6nyxj" path="res://Scene/bullet.tscn" id="2_qf8ee"]
+[ext_resource type="PackedScene" uid="uid://clcn4ycjgav8r" path="res://Scene/worm.tscn" id="3_u87op"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TerrainTest" parent="." instance=ExtResource("1_enh40")]
+
+[node name="Bullet" parent="." instance=ExtResource("2_qf8ee")]
+
+[node name="Worm" parent="." instance=ExtResource("3_u87op")]
+position = Vector2(654, 396)

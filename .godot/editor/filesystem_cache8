@@ -1,0 +1,12 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1709653341
+Bullet.gd::GDScript::-1::1709408370::0::1::::<>Node2D<>::
+icon.svg::CompressedTexture2D::6020818617421452661::1709234605::1709234654::1::::<><>::
+Sprite2D.gd::GDScript::-1::1709234605::0::1::::<>RefCounted<>::
+::res://Scene/::1709653060
+bitmaptest.gd::GDScript::-1::1709410998::0::1::::<>Node2D<>::
+bitmaptest.tscn::PackedScene::5983289313742036258::1709411005::0::1::::<><>::res://Scene/bitmaptest.gd
+bullet.tscn::PackedScene::2465032661777803599::1709411005::0::1::::<><>::res://Bullet.gd
+main.tscn::PackedScene::7760872112106485687::1709411005::0::1::::<><>::uid://cril5vmewcbqo::::res://Scene/bitmaptest.tscn<>uid://bbecy0lg6nyxj::::res://Scene/bullet.tscn
+worm.gd::GDScript::-1::1709653060::0::1::::<>RigidBody2D<>::
+worm.tscn::PackedScene::5549889775908858439::1709414696::0::1::::<><>::
