@@ -1,6 +1,6 @@
-res://Scene/worm.tscn
-res://Bullet.gd
-res://Scene/worm.gd
 res://Scene/main.tscn
 res://Scene/bitmaptest.tscn
 res://Scene/bullet.tscn
+res://Scene/worm.tscn
+res://Scene/worm.gd
+res://Bullet.gd

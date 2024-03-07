@@ -12,3 +12,19 @@
 
 [node name="Worm" parent="." instance=ExtResource("3_u87op")]
 position = Vector2(654, 396)
+
+[node name="Control" type="CenterContainer" parent="."]
+offset_right = 132.0
+offset_bottom = 31.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+toggle_mode = true
+text = "ACTICE BUTTON"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="toggled" from="Control/Button" to="Worm" method="_on_button_toggled"]

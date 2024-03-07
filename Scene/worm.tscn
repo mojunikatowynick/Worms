@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clcn4ycjgav8r"]
+[gd_scene load_steps=4 format=3 uid="uid://clcn4ycjgav8r"]
 
 [ext_resource type="Script" path="res://Scene/worm.gd" id="1_jcqn5"]
+[ext_resource type="Texture2D" uid="uid://lm8tedxr7wai" path="res://Grafika/aim.png" id="2_0ta8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qub5h"]
 size = Vector2(32, 48)
@@ -11,6 +12,14 @@ script = ExtResource("1_jcqn5")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(16, -24, -8, -24, -8, 16, -24, 0, -16, 24, 16, 24, 8, 8, 16, 0)
+
+[node name="center" type="Marker2D" parent="Polygon2D"]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Polygon2D/center"]
+position = Vector2(60, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0ta8y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qub5h")
