@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5hm5osoc0oj8"]
+
+[sub_resource type="GDScript" id="GDScript_amkas"]
+script/source = "extends Area2D
+
+@onready var collision_operator = $\".\"
+@onready var collision_detector = $ExplosionSize
+var collider
+@export var energy = 500
+@export var damage = 40
+@export var speed = 1000
+var direction: Vector2 = Vector2.UP
+
+func _physics_process(delta):
+	position += direction * speed
+
+func _on_area_2d_body_entered(body):
+	collider = body
+	if \"clip\" in collider.get_parent():
+		collider.get_parent().clip(collision_operator)
+	if \"push_back\" in collider:
+		var center = self.global_position
+		collider.push_back(center, energy, damage)
+	explosion()
+
+func _on_exploder_body_entered(_body):
+	if body_entered:
+		collision_detector.monitoring = true
+
+func explosion():
+	queue_free()
+
+func _on_expiry_timeout():
+	queue_free()
+
+func _on_body_entered(body):
+	if body_entered:
+		collision_detector.monitoring = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmf1"]
+size = Vector2(18, 8)
+
+[node name="Sniper" type="Area2D"]
+script = SubResource("GDScript_amkas")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(0, 0, 0, 0, -8, 0, -8, 8, 8, 8, 8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_kgmf1")
+
+[node name="ExplosionSize" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ExplosionSize"]
+polygon = PackedVector2Array(0, -8, 8, 0, 0, 8, -8, 0)
+
+[node name="Expiry" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Expiry" to="." method="_on_expiry_timeout"]

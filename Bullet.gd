@@ -3,7 +3,7 @@ extends Node2D
 @onready var collision_operator = $aim/CollisionPolygon2D
 var collider
 var mouse_pos
-
+var energy = 500
 func _process(_delta):
 	mouse_track()
 	collision_operator_disabled()
@@ -27,6 +27,6 @@ func _on_aim_body_entered(body):
 		collider.get_parent().clip(collision_operator)
 	if "push_back" in collider:
 		var center = mouse_pos
-		var energy = 500
+
 		var damage = 50
 		collider.push_back(center, energy, damage)

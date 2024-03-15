@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5682w0lucwlm"]
+
+[ext_resource type="Script" path="res://Scene/bazooka.gd" id="1_8l4f2"]
+
+[node name="Bazooka" type="RigidBody2D"]
+center_of_mass_mode = 1
+script = ExtResource("1_8l4f2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(0.666667, 1)
+color = Color(0.0313726, 0.305882, 0.282353, 1)
+polygon = PackedVector2Array(-24, -8, 4, -8, 28, 0, 3.6129, 8, -24, 8, -24, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, 0)
+polygon = PackedVector2Array(-8, -8, 8, -8, 32, 0, 8, 8, -8, 8, -8, 0)

@@ -1,66 +1,55 @@
 extends CharacterBody2D
+class_name Worm
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_speed: int = -350
 @export var move_speed: int = 100
+@export var hp = 100
 var active: bool = false
-var hp = 100
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var weapon_active: bool = false
+
 @onready var center_point = $Polygon2D/center
+@onready var weapon_spawn = $Polygon2D/center/WeaponSpawn
+@onready var cross_hair = $Polygon2D/center/CrossHair
+@onready var AP = $Animations/AnimationPlayer
+@onready var state = $StateMachine.current_state
+@onready var sprite_worm = $Polygon2D
+#weapons
+var weapon_energy = 10000
+#timer
+@onready var timer_weapon_energy = $Timers/FirePower
+
+signal weapon_shot(pos, direction, energy)
+
+func _ready():
+	hp_change()
 
 func _physics_process(delta):
 	
+	velocity.y += gravity * delta
 	sprite_scalling()
 	move_and_slide()
-	movement(delta)
-	
+
 	if hp <= 0:
 		queue_free()
 
 func sprite_scalling():
 	if velocity.x > 0:
-		$Polygon2D.scale.x = 1
+		sprite_worm.scale.x = 1
 	elif velocity.x < 0:
-		$Polygon2D.scale.x = -1
-
-func movement(delta):
-	
-	velocity.y += gravity * delta
-	
-	if active:
-		var direction = Input.get_axis("left","right")
-		velocity.x = direction * move_speed
-		
-		if Input.is_action_pressed("up") and center_point.rotation_degrees >= -90:
-			center_point.rotation_degrees -= 5
-		elif Input.is_action_pressed("down") and center_point.rotation_degrees <= 90:
-			center_point.rotation_degrees += 5
-			
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = jump_speed
-	else:
-		if velocity.x > 50 and is_on_floor():
-			velocity.x = velocity.x - 10
-			if velocity.x < 50:
-				velocity.x = 0
-		elif velocity.x < -50 and is_on_floor():
-			velocity.x = velocity.x + 10
-			if velocity.x > -50:
-				velocity.x = 0
-				
-		
-		
+		sprite_worm.scale.x = -1
 
 func push_back(center, energy, damage):
 		var fly_dir = center_point.global_position - center
 		velocity = fly_dir.normalized() * energy
 		hp -= damage
+		hp_change()
 
-
+func hp_change():
+	$Control/TextureProgressBar.value = hp
 
 func _on_button_toggled(toggled_on):
 	if toggled_on:
 		active = true
 	else:
 		active = false
-	print(active)
-

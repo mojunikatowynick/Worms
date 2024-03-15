@@ -1,3 +1,4 @@
 extends Node
 
-var explosion_center
+var weapons
+var weapon_chosen

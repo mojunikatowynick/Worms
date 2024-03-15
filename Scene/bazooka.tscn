@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5682w0lucwlm"]
+
+[ext_resource type="Script" path="res://Scene/bazooka.gd" id="1_8l4f2"]
+
+[node name="Bazooka" type="RigidBody2D" groups=["weapons"]]
+collision_layer = 2
+mass = 0.72
+script = ExtResource("1_8l4f2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-16, 0)
+color = Color(0, 0.482353, 0.505882, 1)
+polygon = PackedVector2Array(-16, -8, 16, -8, 32, 0, 16, 8, -16, 8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-16, 0)
+polygon = PackedVector2Array(16, -8, 32, 0, 16, 8, -16, 8, -16, -8)
+
+[node name="ExplosionSize" type="Area2D" parent="."]
+collision_layer = 2
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExplosionSize"]
+modulate = Color(0, 0, 0.980392, 1)
+polygon = PackedVector2Array(0, -96, -72, -64, -96, 0, -72, 64, 0, 96, 72, 64, 96, 0, 64, -72)
+
+[node name="Exploder" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Exploder"]
+polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)
+
+[node name="Expiry" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="ExplosionSize" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Exploder" to="." method="_on_exploder_body_entered"]
+[connection signal="timeout" from="Expiry" to="." method="_on_expiry_timeout"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://sseis2aiqis1"]
+
+[ext_resource type="Script" path="res://Scene/granade.gd" id="1_4aqw2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xf8fu"]
+rough = true
+bounce = 0.32
+
+[node name="Granade" type="RigidBody2D" groups=["weapons"]]
+mass = 1.08
+physics_material_override = SubResource("PhysicsMaterial_xf8fu")
+angular_damp = 100.0
+script = ExtResource("1_4aqw2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 0.270588, 1)
+polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
+
+[node name="ExplosionSize" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExplosionSize"]
+polygon = PackedVector2Array(0, -48, -40, -40, -48, 0, -40, 40, 0, 48, 40, 40, 48, 0, 40, -40)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "3"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ExplosionSize" to="." method="_on_explosion_size_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

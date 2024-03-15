@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvc4vrbis0bp7"]
+
+[ext_resource type="Script" path="res://Scene/bazooka_2.gd" id="1_nl10u"]
+
+[node name="Bazooka2" type="Area2D"]
+gravity_space_override = 1
+script = ExtResource("1_nl10u")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, -8, 8, -8, 24, 0, 8, 8, -16, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.254902, 0.435294, 0, 1)
+polygon = PackedVector2Array(-16, -8, 8, -8, 24, 0, 8, 8, -16, 8)
