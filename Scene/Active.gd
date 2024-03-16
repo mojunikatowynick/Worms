@@ -25,24 +25,19 @@ func movement(_delta):
 		
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		player.velocity.y = player.jump_speed
-		
+	
 func weapon_handler():
-	if Global.weapon_chosen == "bazooka" or "granade":
+	if Global.weapon_chosen == "bazooka" or Global.weapon_chosen == "granade":
 		if Input.is_action_just_pressed("fire"):
 				AP.play("Power")
 				player.weapon_active = true
 				player.timer_weapon_energy.start()
 		if Input.is_action_just_released("fire") and player.weapon_active or player.weapon_energy >= 80000:
 			fire()
-	elif Global.weapon_chosen == "sniper":
-		fire_sniper()
+	if Global.weapon_chosen == "sniper":
+		if Input.is_action_just_pressed("fire"):
+			fire_sniper()
 
-func fire_sniper():
-	var direction = (player.cross_hair.global_position - player.weapon_spawn.global_position).normalized()
-	var pos = player.weapon_spawn.global_position
-	var energy = null
-	player.weapon_shot.emit(pos, direction, energy)
-	
 func fire():
 	AP.stop()
 	$"../../Polygon2D/center/PowerInd".visible = false
@@ -53,6 +48,13 @@ func fire():
 	player.weapon_shot.emit(pos, direction, energy)
 	player.timer_weapon_energy.stop()
 	player.weapon_energy = 10000
+
+func fire_sniper():
+	player.weapon_active = false
+	var direction = (player.cross_hair.global_position - player.weapon_spawn.global_position).normalized()
+	var pos = player.weapon_spawn.global_position
+	var energy = null
+	player.weapon_shot.emit(pos, direction, energy)
 
 func _on_fire_power_timeout():
 	player.weapon_energy += 25000

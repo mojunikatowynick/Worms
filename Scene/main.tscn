@@ -1,16 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ditoou4g7rmlj"]
+[gd_scene load_steps=4 format=3 uid="uid://ditoou4g7rmlj"]
 
 [ext_resource type="Script" path="res://Scene/main.gd" id="1_b5pmf"]
 [ext_resource type="PackedScene" uid="uid://cril5vmewcbqo" path="res://Scene/bitmaptest.tscn" id="1_enh40"]
-[ext_resource type="PackedScene" uid="uid://bbecy0lg6nyxj" path="res://Scene/bullet.tscn" id="2_qf8ee"]
 [ext_resource type="PackedScene" uid="uid://clcn4ycjgav8r" path="res://Scene/worm.tscn" id="3_u87op"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_b5pmf")
 
 [node name="TerrainTest" parent="." instance=ExtResource("1_enh40")]
-
-[node name="Bullet" parent="." instance=ExtResource("2_qf8ee")]
 
 [node name="Worm" parent="." instance=ExtResource("3_u87op")]
 position = Vector2(654, 396)
@@ -43,9 +40,14 @@ layout_mode = 2
 keep_pressed_outside = true
 text = "Granade"
 
+[node name="SniperButton" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "Sniper"
+
 [node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="weapon_shot" from="Worm" to="." method="_on_worm_weapon_shot"]
 [connection signal="toggled" from="Control/HBoxContainer/Button" to="Worm" method="_on_button_toggled"]
 [connection signal="pressed" from="Control/HBoxContainer/BazookaButton" to="." method="_on_bazooka_button_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer/GranadeButton" to="." method="_on_granade_button_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/SniperButton" to="." method="_on_sniper_button_pressed"]
