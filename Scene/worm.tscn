@@ -94,6 +94,9 @@ position = Vector2(55, 0)
 texture = ExtResource("3_bij2b")
 vframes = 5
 
+[node name="SniperRay" type="RayCast2D" parent="Polygon2D/center"]
+target_position = Vector2(2000, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qub5h")
 

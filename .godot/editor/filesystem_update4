@@ -1,5 +1,7 @@
-res://Scene/main.tscn
+res://Scene/ui.tscn
 res://Scene/main.gd
+res://Scene/ui.gd
+res://Scene/main.tscn
 res://Scene/bitmaptest.tscn
 res://Scene/worm.tscn
 res://Scene/bazooka.tscn

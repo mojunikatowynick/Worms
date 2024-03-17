@@ -3,14 +3,17 @@ class_name  Active
 
 @export var player: CharacterBody2D
 @onready var AP = $"../../Animations/AnimationPlayer"
+@onready var sniper_ray = $"../../Polygon2D/center/SniperRay"
 var sniper_ammo = 2
 
 func Enter():
 	$"../../Polygon2D/center/CrossHairSprite".visible = true
+
 	
 func Physics_update(delta: float):
 	movement(delta)
 	weapon_handler()
+	Global.camera_pos = player.position
 	if player.active == false:
 		Transitioned.emit(self, "Innactive")
 
@@ -50,11 +53,11 @@ func fire():
 	player.weapon_energy = 10000
 
 func fire_sniper():
-	player.weapon_active = false
-	var direction = (player.cross_hair.global_position - player.weapon_spawn.global_position).normalized()
-	var pos = player.weapon_spawn.global_position
-	var energy = null
-	player.weapon_shot.emit(pos, direction, energy)
+	var collision_point = sniper_ray.get_collision_point()
+	player.weapon_shot_sniper.emit(collision_point)
+
+
+
 
 func _on_fire_power_timeout():
 	player.weapon_energy += 25000

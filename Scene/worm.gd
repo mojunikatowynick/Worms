@@ -20,6 +20,7 @@ var weapon_energy = 10000
 @onready var timer_weapon_energy = $Timers/FirePower
 
 signal weapon_shot(pos, direction, energy)
+signal weapon_shot_sniper(collision_point)
 
 func _ready():
 	hp_change()
@@ -48,8 +49,3 @@ func push_back(center, energy, damage):
 func hp_change():
 	$Control/TextureProgressBar.value = hp
 
-func _on_button_toggled(toggled_on):
-	if toggled_on:
-		active = true
-	else:
-		active = false
