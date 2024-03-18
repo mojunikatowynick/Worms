@@ -64,11 +64,15 @@ _data = {
 }
 
 [node name="Worm" type="CharacterBody2D"]
-floor_max_angle = 1.38754
+collision_layer = 4
+collision_mask = 9
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_max_angle = 3.14159
+floor_snap_length = 10.0
 script = ExtResource("1_jcqn5")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.811765, 0.494118, 0.564706, 1)
 polygon = PackedVector2Array(16, -24, -8, -24, -8, 16, -24, 0, -16, 24, 16, 24, 8, 8, 16, 0)
 
 [node name="EnergyIndicator" type="Node2D" parent="Polygon2D"]
@@ -96,6 +100,8 @@ vframes = 5
 
 [node name="SniperRay" type="RayCast2D" parent="Polygon2D/center"]
 target_position = Vector2(2000, 0)
+collision_mask = 5
+collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qub5h")

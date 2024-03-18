@@ -18,3 +18,7 @@ func clip(poly):
 	
 	$Polygon2D.polygon = res[0]
 	$StaticBody2D/CollisionPolygon2D.set_deferred("polygon", res[0])
+
+
+func _on_water_body_entered(body):
+	body.hp = 0

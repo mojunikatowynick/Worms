@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var collision_detector = $ExplosionSize
 var collider
 @export var energy = 50
-@export var damage = 70
+@export var damage = 45
 
 
 func _physics_process(_delta):

@@ -4,6 +4,7 @@
 
 [node name="Bazooka" type="RigidBody2D" groups=["weapons"]]
 collision_layer = 2
+collision_mask = 5
 mass = 0.72
 script = ExtResource("1_8l4f2")
 
@@ -18,14 +19,16 @@ polygon = PackedVector2Array(16, -8, 32, 0, 16, 8, -16, 8, -16, -8)
 
 [node name="ExplosionSize" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 5
 monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExplosionSize"]
 modulate = Color(0, 0, 0.980392, 1)
-polygon = PackedVector2Array(0, -96, -72, -64, -96, 0, -72, 64, 0, 96, 72, 64, 96, 0, 64, -72)
+polygon = PackedVector2Array(0, -72, -56, -48, -72, 0, -56, 48, 0, 72, 56, 48, 72, 0, 56, -48)
 
 [node name="Exploder" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Exploder"]
 polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)

@@ -24,7 +24,7 @@ signal weapon_shot_sniper(collision_point)
 
 func _ready():
 	hp_change()
-
+	
 func _physics_process(delta):
 	
 	velocity.y += gravity * delta
@@ -48,4 +48,5 @@ func push_back(center, energy, damage):
 
 func hp_change():
 	$Control/TextureProgressBar.value = hp
+
 

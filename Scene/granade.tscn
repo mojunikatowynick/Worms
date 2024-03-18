@@ -7,6 +7,8 @@ rough = true
 bounce = 0.32
 
 [node name="Granade" type="RigidBody2D" groups=["weapons"]]
+collision_layer = 2
+collision_mask = 5
 mass = 1.08
 physics_material_override = SubResource("PhysicsMaterial_xf8fu")
 angular_damp = 100.0
@@ -20,10 +22,12 @@ polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
 polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
 
 [node name="ExplosionSize" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
 monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExplosionSize"]
-polygon = PackedVector2Array(0, -48, -40, -40, -48, 0, -40, 40, 0, 48, 40, 40, 48, 0, 40, -40)
+polygon = PackedVector2Array(0, -80, -64, -64, -88, 0, -64, 64, 0, 80, 64, 64, 88, 0, 64, -64)
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 2

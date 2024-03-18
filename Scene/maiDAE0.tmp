@@ -27,12 +27,12 @@ position = Vector2(1582, 488)
 position = Vector2(-1054, 630)
 
 [node name="Worm4" parent="TEAM1" instance=ExtResource("3_u87op")]
-position = Vector2(-316, 562)
+position = Vector2(-710, 334)
 
 [node name="TEAM2" type="Node2D" parent="."]
 
 [node name="Worm5" parent="TEAM2" instance=ExtResource("3_u87op")]
-position = Vector2(247, 463)
+position = Vector2(-255, 517)
 
 [node name="Worm6" parent="TEAM2" instance=ExtResource("3_u87op")]
 position = Vector2(666, 406)
@@ -41,7 +41,7 @@ position = Vector2(666, 406)
 position = Vector2(2065, 319)
 
 [node name="Worm8" parent="TEAM2" instance=ExtResource("3_u87op")]
-position = Vector2(-644, 273)
+position = Vector2(283, 463)
 
 [node name="UI" parent="." instance=ExtResource("4_7ksam")]
 

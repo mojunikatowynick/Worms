@@ -9,7 +9,6 @@ var collider
 @export var energy = 500
 @export var damage = 40
 
-
 func _on_body_entered(body):
 	collider = body
 	if \"clip\" in collider.get_parent():

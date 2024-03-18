@@ -53,7 +53,11 @@ func fire():
 	player.weapon_energy = 10000
 
 func fire_sniper():
-	var collision_point = sniper_ray.get_collision_point()
+	var collision_point 
+	if sniper_ray.is_colliding():
+		collision_point = sniper_ray.get_collision_point()
+	else:
+		collision_point = null
 	player.weapon_shot_sniper.emit(collision_point)
 
 
