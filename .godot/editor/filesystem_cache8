@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1710783489
+::res://::1710880099
 Bullet.gd::GDScript::-1::1710274611::0::1::::<>Node2D<>::
 icon.svg::CompressedTexture2D::6020818617421452661::1709234605::1709234654::1::::<><>::
 Sprite2D.gd::GDScript::-1::1709234605::0::1::::<>RefCounted<>::
@@ -12,24 +12,24 @@ power indicator.png::CompressedTexture2D::6501116330816408151::1710267385::17102
 bg.png::CompressedTexture2D::2508911468311228240::1688037696::1710016162::1::::<><>::
 over.png::CompressedTexture2D::3250236601866662495::1688037696::1710016162::1::::<><>::
 progress.png::CompressedTexture2D::7225076556832177513::1688037696::1710016162::1::::<><>::
-::res://Scene/::1710682319
+::res://Scene/::1710787104
 Active.gd::GDScript::-1::1710681631::0::1::::Active<>State<>::
 bazooka.gd::GDScript::-1::1710677224::0::1::::<>RigidBody2D<>::
-bazooka.tscn::PackedScene::6944555458760186570::1710682304::0::1::::<><>::res://Scene/bazooka.gd
+bazooka.tscn::PackedScene::6944555458760186570::1710787047::0::1::::<><>::res://Scene/bazooka.gd
 bazooka_2.gd::GDScript::-1::1710440580::0::1::::<>Area2D<>::
 bazooka_2.tscn::PackedScene::6252735028585510602::1710013382::0::1::::<><>::res://Scene/bazooka_2.gd
 bitmaptest.gd::GDScript::-1::1710674670::0::1::::<>Node2D<>::
-bitmaptest.tscn::PackedScene::5983289313742036258::1710682304::0::1::::<><>::res://Scene/bitmaptest.gd
+bitmaptest.tscn::PackedScene::5983289313742036258::1710787047::0::1::::<><>::res://Scene/bitmaptest.gd
 bullet.tscn::PackedScene::2465032661777803599::1710453011::0::1::::<><>::res://Bullet.gd
 granade.gd::GDScript::-1::1710450040::0::1::::<>RigidBody2D<>::
-granade.tscn::PackedScene::1300816126521315166::1710682304::0::1::::<><>::res://Scene/granade.gd
-Innactive.gd::GDScript::-1::1710681172::0::1::::Innactive<>State<>::
-main.gd::GDScript::-1::1710682304::0::1::::<>Node2D<>::
-main.tscn::PackedScene::7760872112106485687::1710682319::0::1::::<><>::res://Scene/main.gd<>uid://cril5vmewcbqo::::res://Scene/bitmaptest.tscn<>uid://clcn4ycjgav8r::::res://Scene/worm.tscn<>uid://nfndsk6mffcr::::res://Scene/ui.tscn
-sniper.tscn::PackedScene::6893740262309085747::1710682304::0::1::::<><>::
+granade.tscn::PackedScene::1300816126521315166::1710787047::0::1::::<><>::res://Scene/granade.gd
+Innactive.gd::GDScript::-1::1710786458::0::1::::Innactive<>State<>::
+main.gd::GDScript::-1::1710787038::0::1::::<>Node2D<>::
+main.tscn::PackedScene::7760872112106485687::1710787104::0::1::::<><>::res://Scene/main.gd<>uid://cril5vmewcbqo::::res://Scene/bitmaptest.tscn<>uid://clcn4ycjgav8r::::res://Scene/worm.tscn<>uid://nfndsk6mffcr::::res://Scene/ui.tscn
+sniper.tscn::PackedScene::6893740262309085747::1710787047::0::1::::<><>::
 State.gd::GDScript::-1::1710268958::0::1::::State<>Node<>::
 StateMachine.gd::GDScript::-1::1710269476::0::1::::<>Node<>::
 ui.gd::GDScript::-1::1710672707::0::1::::<>CanvasLayer<>::
-ui.tscn::PackedScene::923572496645481905::1710682304::0::1::::<><>::res://Scene/ui.gd
-worm.gd::GDScript::-1::1710681172::0::1::::Worm<>CharacterBody2D<>::
-worm.tscn::PackedScene::5549889775908858439::1710682304::0::1::::<><>::res://Scene/worm.gd<>uid://lm8tedxr7wai::::res://Grafika/aim.png<>uid://bb0ln1s7o5a5e::::res://Grafika/progress bar/bg.png<>uid://cyvgo3gglyroh::::res://Grafika/power indicator.png<>uid://bmko6l2aafwa6::::res://Grafika/progress bar/over.png<>uid://da647qk4636s0::::res://Grafika/progress bar/progress.png<>res://Scene/Active.gd<>res://Scene/StateMachine.gd<>res://Scene/Innactive.gd
+ui.tscn::PackedScene::923572496645481905::1710787047::0::1::::<><>::res://Scene/ui.gd
+worm.gd::GDScript::-1::1710784604::0::1::::Worm<>CharacterBody2D<>::
+worm.tscn::PackedScene::5549889775908858439::1710787047::0::1::::<><>::res://Scene/worm.gd<>uid://lm8tedxr7wai::::res://Grafika/aim.png<>uid://bb0ln1s7o5a5e::::res://Grafika/progress bar/bg.png<>uid://cyvgo3gglyroh::::res://Grafika/power indicator.png<>uid://bmko6l2aafwa6::::res://Grafika/progress bar/over.png<>uid://da647qk4636s0::::res://Grafika/progress bar/progress.png<>res://Scene/Active.gd<>res://Scene/StateMachine.gd<>res://Scene/Innactive.gd

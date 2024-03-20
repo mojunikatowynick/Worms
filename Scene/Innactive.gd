@@ -10,10 +10,10 @@ func Enter():
 func Physics_update(_delta: float):
 	
 	if player.velocity != Vector2.ZERO and player.is_on_floor():
-		player.velocity / 2
 		if player.velocity.x >= -50 or player.velocity.x <= 50:
 			player.velocity.x = 0
-	
+	else:
+		pass
 	
 	if player.active == true:
 		Transitioned.emit(self, "Active")

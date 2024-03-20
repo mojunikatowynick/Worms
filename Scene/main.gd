@@ -7,6 +7,11 @@ var projectile = bazooka_scene.instantiate() as RigidBody2D
 var worm = null
 var zoom = 1
 
+var both_teams
+var first_team
+var last_team 
+var new_team
+
 @onready var TEAM_number_1 = $TEAM1
 @onready var TEAM_number_2 = $TEAM2
 
@@ -23,9 +28,7 @@ func _ready():
 	for child in team2:
 		child.get_child(0).self_modulate = Color(0.862745, 0.0784314, 0.235294, 1)
 		
-	print(team1,team2)
-		
-		
+
 func _process(delta):
 
 	camera_control(delta)
@@ -79,10 +82,25 @@ func _on_worm_weapon_shot_sniper(collision_point):
 	
 func _on_ui_activate_worm():
 	
-	var both_teams = [TEAM_number_1, TEAM_number_2]
-	var first_team = both_teams.pick_random()
+	both_teams = [TEAM_number_1, TEAM_number_2]
+	first_team = both_teams.pick_random()
 	worm = first_team.get_child(0)
 	worm.active = true
 
 func finish_round():
 	print("finished round")
+	
+
+
+func _on_ui_next_worm():
+	last_team = both_teams.find(first_team)
+	if last_team == 0:
+		last_team = 1
+	elif last_team == 1:
+		last_team = 0
+	new_team = both_teams[last_team]
+	worm.active = false
+	worm = new_team.get_child(0)
+	print(worm)
+	worm.active = true
+	first_team = both_teams[last_team]
