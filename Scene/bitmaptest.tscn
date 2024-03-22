@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scene/bitmaptest.gd" id="1_x30xs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prhtd"]
-size = Vector2(9728, 449)
+size = Vector2(15464, 2017)
 
 [node name="TerrainTest" type="Node2D"]
 script = ExtResource("1_x30xs")
@@ -22,11 +22,13 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="Polygon2D" type="Polygon2D" parent="Water"]
+position = Vector2(-942.105, -3168)
+scale = Vector2(1.58882, 4.53571)
 color = Color(0.541176, 0.8, 0.854902, 1)
 polygon = PackedVector2Array(-3264, 896, 6464, 896, 6464, 1344, -3264, 1344)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
-position = Vector2(1600, 1119.5)
+position = Vector2(1604, 1903.5)
 shape = SubResource("RectangleShape2D_prhtd")
 
 [connection signal="body_entered" from="Water" to="." method="_on_water_body_entered"]

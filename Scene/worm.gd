@@ -32,6 +32,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if hp <= 0:
+		get_parent().get_parent().clear_name(self.get_name())
 		queue_free()
 
 func sprite_scalling():

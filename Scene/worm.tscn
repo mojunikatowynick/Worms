@@ -136,7 +136,7 @@ texture_progress = ExtResource("5_mpmh3")
 [node name="Timers" type="Node" parent="."]
 
 [node name="FirePower" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.25
 
 [node name="Animations" type="Node2D" parent="."]
 

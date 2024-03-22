@@ -60,9 +60,6 @@ func fire_sniper():
 		collision_point = null
 	player.weapon_shot_sniper.emit(collision_point)
 
-
-
-
 func _on_fire_power_timeout():
-	player.weapon_energy += 25000
+	player.weapon_energy += 12500
 
