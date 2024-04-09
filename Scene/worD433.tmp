@@ -83,12 +83,6 @@ polygon = PackedVector2Array(16, -24, -8, -24, -8, 16, -24, 0, -16, 24, 16, 24, 
 [node name="center" type="Marker2D" parent="Polygon2D"]
 position = Vector2(0, -10)
 
-[node name="PowerInd" type="Sprite2D" parent="Polygon2D/center"]
-visible = false
-position = Vector2(55, 0)
-texture = ExtResource("3_bij2b")
-vframes = 5
-
 [node name="WeaponSprite" type="Node2D" parent="Polygon2D/center"]
 position = Vector2(0, 0.155)
 
@@ -115,6 +109,12 @@ texture = ExtResource("2_0ta8y")
 [node name="CrossHair" type="Marker2D" parent="Polygon2D/center"]
 position = Vector2(90, 0)
 scale = Vector2(2, 2)
+
+[node name="PowerInd" type="Sprite2D" parent="Polygon2D/center"]
+visible = false
+position = Vector2(55, 0)
+texture = ExtResource("3_bij2b")
+vframes = 5
 
 [node name="SniperRay" type="RayCast2D" parent="Polygon2D/center"]
 target_position = Vector2(2000, 0)

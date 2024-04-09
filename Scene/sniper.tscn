@@ -7,7 +7,7 @@ script/source = "extends Area2D
 
 var collider
 @export var energy = 500
-@export var damage = 40
+@export var damage = 65
 
 func _on_body_entered(body):
 	collider = body

@@ -6,7 +6,7 @@ class_name  Innactive
 
 func Enter():
 	$"../../Polygon2D/center/CrossHairSprite".visible = false
-	
+
 func Physics_update(_delta: float):
 	
 	if player.velocity != Vector2.ZERO and player.is_on_floor():

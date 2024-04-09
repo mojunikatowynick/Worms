@@ -1,21 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://clcn4ycjgav8r"]
+[gd_scene load_steps=14 format=3 uid="uid://clcn4ycjgav8r"]
 
 [ext_resource type="Script" path="res://Scene/worm.gd" id="1_jcqn5"]
 [ext_resource type="Texture2D" uid="uid://lm8tedxr7wai" path="res://Grafika/aim.png" id="2_0ta8y"]
-[ext_resource type="Texture2D" uid="uid://c5us6851vjpi5" path="res://Grafika/weapons/zooka.png" id="2_ewyry"]
 [ext_resource type="Texture2D" uid="uid://bb0ln1s7o5a5e" path="res://Grafika/progress bar/bg.png" id="3_5recv"]
-[ext_resource type="Texture2D" uid="uid://cinphtpcq5iym" path="res://Grafika/weapons/sniper.png" id="3_6q6bk"]
 [ext_resource type="Texture2D" uid="uid://cyvgo3gglyroh" path="res://Grafika/power indicator.png" id="3_bij2b"]
 [ext_resource type="Texture2D" uid="uid://bmko6l2aafwa6" path="res://Grafika/progress bar/over.png" id="4_ahvbq"]
-[ext_resource type="Texture2D" uid="uid://c57hg3406lait" path="res://Grafika/weapons/nade.png" id="4_vhutq"]
 [ext_resource type="Texture2D" uid="uid://da647qk4636s0" path="res://Grafika/progress bar/progress.png" id="5_mpmh3"]
 [ext_resource type="Script" path="res://Scene/Active.gd" id="7_e2i0p"]
 [ext_resource type="Script" path="res://Scene/StateMachine.gd" id="7_tknha"]
 [ext_resource type="Script" path="res://Scene/Innactive.gd" id="9_kldo5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4bby"]
-radius = 16.0
-height = 48.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qub5h"]
+size = Vector2(32, 48)
 
 [sub_resource type="Animation" id="Animation_cm3bj"]
 resource_name = "Power"
@@ -83,27 +79,6 @@ polygon = PackedVector2Array(16, -24, -8, -24, -8, 16, -24, 0, -16, 24, 16, 24, 
 [node name="center" type="Marker2D" parent="Polygon2D"]
 position = Vector2(0, -10)
 
-[node name="PowerInd" type="Sprite2D" parent="Polygon2D/center"]
-visible = false
-position = Vector2(55, 0)
-texture = ExtResource("3_bij2b")
-vframes = 5
-
-[node name="WeaponSprite" type="Node2D" parent="Polygon2D/center"]
-position = Vector2(0, 0.155)
-
-[node name="Bazooka" type="Sprite2D" parent="Polygon2D/center/WeaponSprite"]
-texture = ExtResource("2_ewyry")
-
-[node name="Sniper" type="Sprite2D" parent="Polygon2D/center/WeaponSprite"]
-texture = ExtResource("3_6q6bk")
-offset = Vector2(18.49, 0)
-
-[node name="Granade" type="Sprite2D" parent="Polygon2D/center/WeaponSprite"]
-rotation = -1.09083
-texture = ExtResource("4_vhutq")
-offset = Vector2(3.835, -11.345)
-
 [node name="WeaponSpawn" type="Marker2D" parent="Polygon2D/center"]
 position = Vector2(50, 0)
 
@@ -116,13 +91,19 @@ texture = ExtResource("2_0ta8y")
 position = Vector2(90, 0)
 scale = Vector2(2, 2)
 
+[node name="PowerInd" type="Sprite2D" parent="Polygon2D/center"]
+visible = false
+position = Vector2(55, 0)
+texture = ExtResource("3_bij2b")
+vframes = 5
+
 [node name="SniperRay" type="RayCast2D" parent="Polygon2D/center"]
 target_position = Vector2(2000, 0)
 collision_mask = 5
 collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_a4bby")
+shape = SubResource("RectangleShape2D_qub5h")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -171,7 +152,6 @@ initial_state = NodePath("Innactive")
 [node name="Active" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_e2i0p")
 player = NodePath("../..")
-zoom_camera = 0.5
 
 [node name="Innactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("9_kldo5")

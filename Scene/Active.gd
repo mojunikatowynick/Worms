@@ -2,32 +2,53 @@ extends State
 class_name  Active
 
 @export var player: CharacterBody2D
+@export_range(0.2, 1.0, 0.1) var zoom_camera
 @onready var AP = $"../../Animations/AnimationPlayer"
 @onready var sniper_ray = $"../../Polygon2D/center/SniperRay"
-var sniper_ammo = 2
+var pre_wait: bool = false
 
 func Enter():
+	pre_wait = false
+	Global.weapon_chosen = "null"
+	await get_tree().create_timer(2).timeout
+	pre_wait = true
 	$"../../Polygon2D/center/CrossHairSprite".visible = true
-
+	player.weapon_active = true
+	zoom_camera = 0.7
 	
 func Physics_update(delta: float):
-	movement(delta)
-	weapon_handler()
-	Global.camera_pos = player.position
-	if player.active == false:
-		Transitioned.emit(self, "Innactive")
+	
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(player.get_parent().get_parent().player_camera, "zoom", Vector2(zoom_camera, zoom_camera), 1)
+	tween.tween_property(player.get_parent().get_parent().player_camera, "position", player.position, 1)
+	if pre_wait:
+		movement(delta)
+		if player.weapon_active:
+			weapon_handler()
+		else:
+			pass
+		if player.active == false:
+			Transitioned.emit(self, "Innactive")
+	else:
+		pass
+
+
 
 func movement(_delta):
 	var direction = Input.get_axis("left","right")
 	player.velocity.x = direction * player.move_speed
 	
 	if Input.is_action_pressed("up") and player.center_point.rotation_degrees >= -90:
-		player.center_point.rotation_degrees -= 2
+		player.center_point.rotation_degrees -= 1
 	elif Input.is_action_pressed("down") and player.center_point.rotation_degrees <= 90:
-		player.center_point.rotation_degrees += 2
-		
+		player.center_point.rotation_degrees += 1
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		player.velocity.y = player.jump_speed
+	if Input.is_action_just_pressed("zoomin") and zoom_camera <= 1:
+		self.zoom_camera += 0.05
+	if Input.is_action_just_pressed("zoomout")and zoom_camera >= 0.3:
+		self.zoom_camera -= 0.05
 	
 func weapon_handler():
 	if Global.weapon_chosen == "bazooka" or Global.weapon_chosen == "granade":
@@ -40,6 +61,8 @@ func weapon_handler():
 	if Global.weapon_chosen == "sniper":
 		if Input.is_action_just_pressed("fire"):
 			fire_sniper()
+	else: 
+		pass
 
 func fire():
 	AP.stop()
@@ -51,7 +74,9 @@ func fire():
 	player.weapon_shot.emit(pos, direction, energy)
 	player.timer_weapon_energy.stop()
 	player.weapon_energy = 10000
-
+	player.weapon_active = false
+	weapon_dissapear()
+	
 func fire_sniper():
 	var collision_point 
 	if sniper_ray.is_colliding():
@@ -59,7 +84,13 @@ func fire_sniper():
 	else:
 		collision_point = null
 	player.weapon_shot_sniper.emit(collision_point)
-
+	player.weapon_active = false
+	weapon_dissapear()
+	
 func _on_fire_power_timeout():
 	player.weapon_energy += 12500
 
+func weapon_dissapear():
+	player.sniper.call_deferred("set_visible", false)
+	player.granade.call_deferred("set_visible", false)
+	player.bazooka.call_deferred("set_visible", false)

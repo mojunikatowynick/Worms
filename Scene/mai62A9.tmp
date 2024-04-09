@@ -12,11 +12,8 @@ script = ExtResource("1_b5pmf")
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Graves" type="Node2D" parent="."]
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(723, 479)
-zoom = Vector2(0.3, 0.3)
 
 [node name="TEAM1" type="Node2D" parent="."]
 
@@ -53,30 +50,34 @@ position = Vector2(-1151.56, 453)
 
 [node name="Timer" type="Node" parent="."]
 
-[node name="WormTimer" type="Timer" parent="Timer"]
-wait_time = 5.0
+[node name="Worm Timer" type="Timer" parent="Timer"]
+wait_time = 3.0
 one_shot = true
 
-[node name="RoundTimer" type="Timer" parent="Timer"]
-
+[connection signal="dead" from="TEAM1/Worm" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM1/Worm" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM1/Worm" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM1/Worm2" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM1/Worm2" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM1/Worm2" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM1/Worm3" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM1/Worm3" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM1/Worm3" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM1/Worm4" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM1/Worm4" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM1/Worm4" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM2/Worm5" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM2/Worm5" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM2/Worm5" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM2/Worm6" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM2/Worm6" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM2/Worm6" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM2/Worm7" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM2/Worm7" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM2/Worm7" to="." method="_on_worm_weapon_shot_sniper"]
+[connection signal="dead" from="TEAM2/Worm8" to="." method="_on_worm_dead"]
 [connection signal="weapon_shot" from="TEAM2/Worm8" to="." method="_on_worm_weapon_shot"]
 [connection signal="weapon_shot_sniper" from="TEAM2/Worm8" to="." method="_on_worm_weapon_shot_sniper"]
 [connection signal="activate_worm" from="UI" to="." method="_on_ui_activate_worm"]
 [connection signal="next_worm" from="UI" to="." method="_on_ui_next_worm"]
-[connection signal="weapon_sprite" from="UI" to="." method="_on_ui_weapon_sprite"]
-[connection signal="timeout" from="Timer/WormTimer" to="." method="_on_worm_timer_timeout"]
-[connection signal="timeout" from="Timer/RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="Timer/Worm Timer" to="." method="_on_worm_timer_timeout"]

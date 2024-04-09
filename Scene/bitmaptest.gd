@@ -21,4 +21,8 @@ func clip(poly):
 
 
 func _on_water_body_entered(body):
-	body.hp = 0
+	if "die_in_water" in body:
+		body.die_in_water()
+		get_parent().finish_round_timer()
+	else:
+		pass

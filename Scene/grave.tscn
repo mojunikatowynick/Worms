@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfmn8hkoe2sag"]
+
+[ext_resource type="Script" path="res://Scene/grave.gd" id="1_r3eri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rd0j"]
+
+[node name="Grave" type="CharacterBody2D"]
+collision_layer = 16
+slide_on_ceiling = false
+script = ExtResource("1_r3eri")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.592157, 0.592157, 0.592157, 1)
+polygon = PackedVector2Array(-8, 8, -8, -16, -16, -16, -16, -32, -8, -32, -8, -40, 8, -40, 8, -32, 16, -32, 16, -16, 8, -16, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1rd0j")

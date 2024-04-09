@@ -14,6 +14,10 @@ var weapon_active: bool = false
 @onready var AP = $Animations/AnimationPlayer
 @onready var state = $StateMachine.current_state
 @onready var sprite_worm = $Polygon2D
+@onready var sniper = $Polygon2D/center/WeaponSprite/Sniper
+@onready var granade = $Polygon2D/center/WeaponSprite/Granade
+@onready var bazooka = $Polygon2D/center/WeaponSprite/Bazooka
+
 #weapons
 var weapon_energy = 10000
 #timer
@@ -21,19 +25,18 @@ var weapon_energy = 10000
 
 signal weapon_shot(pos, direction, energy)
 signal weapon_shot_sniper(collision_point)
+signal dead
 
 func _ready():
 	hp_change()
+	sniper.call_deferred("set_visible", false)
+	granade.call_deferred("set_visible", false)
+	bazooka.call_deferred("set_visible", false)
 	
 func _physics_process(delta):
-	
 	velocity.y += gravity * delta
 	sprite_scalling()
 	move_and_slide()
-
-	if hp <= 0:
-		get_parent().get_parent().clear_name(self.get_name())
-		queue_free()
 
 func sprite_scalling():
 	if velocity.x > 0:
@@ -50,4 +53,23 @@ func push_back(center, energy, damage):
 func hp_change():
 	$Control/TextureProgressBar.value = hp
 
+func die_in_water():
+	hp = 0
+	var tween_worm= get_tree().create_tween()
+	tween_worm.tween_property($".", "modulate", Color(1, 1, 1, 0), 1)
+	self.active = false
 
+func weapon_sprite_enabler():
+	if Global.weapon_chosen == "bazooka":
+		bazooka.call_deferred("set_visible", true)
+		granade.call_deferred("set_visible", false)
+		sniper.call_deferred("set_visible", false)
+	if Global.weapon_chosen == "granade":
+		bazooka.call_deferred("set_visible", false)
+		granade.call_deferred("set_visible", true)
+		sniper.call_deferred("set_visible", false)
+	if Global.weapon_chosen == "sniper":
+		bazooka.call_deferred("set_visible", true)
+		granade.call_deferred("set_visible", false)
+		sniper.call_deferred("set_visible", false)
+	
