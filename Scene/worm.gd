@@ -69,7 +69,7 @@ func weapon_sprite_enabler():
 		granade.call_deferred("set_visible", true)
 		sniper.call_deferred("set_visible", false)
 	if Global.weapon_chosen == "sniper":
-		bazooka.call_deferred("set_visible", true)
+		bazooka.call_deferred("set_visible", false)
 		granade.call_deferred("set_visible", false)
-		sniper.call_deferred("set_visible", false)
+		sniper.call_deferred("set_visible", true)
 	

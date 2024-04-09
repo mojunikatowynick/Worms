@@ -1,12 +1,3 @@
 res://Scene/worm.tscn
 res://Scene/main.gd
-res://Scene/main.tscn
-res://Scene/bitmaptest.tscn
-res://Scene/bazooka.tscn
-res://Scene/granade.tscn
-res://Scene/sniper.tscn
-res://Scene/ui.tscn
-res://Scene/grave.tscn
 res://Scene/worm.gd
-res://Scene/Active.gd
-res://Scene/ui.gd
