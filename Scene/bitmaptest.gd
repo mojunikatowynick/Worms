@@ -24,5 +24,7 @@ func _on_water_body_entered(body):
 	if "die_in_water" in body:
 		body.die_in_water()
 		get_parent().finish_round_timer()
+	elif "grave_in_water" in body:
+		body.grave_in_water()
 	else:
 		pass

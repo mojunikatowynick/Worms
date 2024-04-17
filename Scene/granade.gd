@@ -12,9 +12,13 @@ var collider
 func _ready():
 	timer.start()
 	label.text = "3"
-
+	
 func _physics_process(_delta):
-	rotation = linear_velocity.angle() * 2
+
+	
+	label.set_rotation(- self.rotation)
+	
+	$Polygon2D.rotation = linear_velocity.angle() * 2
 	if count_down <= 0:
 		collision_detector.monitoring = true
 

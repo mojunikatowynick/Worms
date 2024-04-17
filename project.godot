@@ -92,6 +92,7 @@ zoomout={
 2d_physics/layer_2="projectiles"
 2d_physics/layer_3="worms"
 2d_physics/layer_4="area"
+2d_physics/layer_5="grave"
 
 [rendering]
 

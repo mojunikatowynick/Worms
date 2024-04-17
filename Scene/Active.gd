@@ -23,16 +23,21 @@ func Physics_update(delta: float):
 	tween.tween_property(player.get_parent().get_parent().player_camera, "zoom", Vector2(zoom_camera, zoom_camera), 1)
 	tween.tween_property(player.get_parent().get_parent().player_camera, "position", player.position, 1)
 	if pre_wait:
-		movement(delta)
-		if player.weapon_active:
-			weapon_handler()
+		if player.is_on_floor():
+			movement(delta)
+			if player.weapon_active:
+				weapon_handler()
+			else:
+				pass
+			if player.active == false:
+				Transitioned.emit(self, "Innactive")
 		else:
 			pass
-		if player.active == false:
-			Transitioned.emit(self, "Innactive")
 	else:
 		pass
-
+		
+	if not player.active:
+		weapon_dissapear()
 
 
 func movement(_delta):
@@ -44,7 +49,11 @@ func movement(_delta):
 	elif Input.is_action_pressed("down") and player.center_point.rotation_degrees <= 90:
 		player.center_point.rotation_degrees += 1
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
-		player.velocity.y = player.jump_speed
+			player.velocity.y = player.jump_speed
+			if player.sprite_worm.scale.x == -1:
+				player.velocity.x = player.jump_speed/3
+			elif player.sprite_worm.scale.x == 1:
+				player.velocity.x = -player.jump_speed/3
 	if Input.is_action_just_pressed("zoomin") and zoom_camera <= 1:
 		self.zoom_camera += 0.05
 	if Input.is_action_just_pressed("zoomout")and zoom_camera >= 0.3:
@@ -78,6 +87,7 @@ func fire():
 	weapon_dissapear()
 	
 func fire_sniper():
+
 	var collision_point 
 	if sniper_ray.is_colliding():
 		collision_point = sniper_ray.get_collision_point()
@@ -86,6 +96,9 @@ func fire_sniper():
 	player.weapon_shot_sniper.emit(collision_point)
 	player.weapon_active = false
 	weapon_dissapear()
+	player.sniper_shot.call_deferred("set_visible", true)
+	await get_tree().create_timer(0.1).timeout
+	player.sniper_shot.call_deferred("set_visible", false)
 	
 func _on_fire_power_timeout():
 	player.weapon_energy += 12500
@@ -94,3 +107,5 @@ func weapon_dissapear():
 	player.sniper.call_deferred("set_visible", false)
 	player.granade.call_deferred("set_visible", false)
 	player.bazooka.call_deferred("set_visible", false)
+
+

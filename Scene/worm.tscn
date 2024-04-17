@@ -14,8 +14,8 @@
 [ext_resource type="Script" path="res://Scene/Innactive.gd" id="9_kldo5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4bby"]
-radius = 16.0
-height = 48.0
+radius = 21.0
+height = 58.0
 
 [sub_resource type="Animation" id="Animation_cm3bj"]
 resource_name = "Power"
@@ -74,6 +74,7 @@ floor_constant_speed = true
 floor_max_angle = 3.14159
 floor_snap_length = 0.2
 script = ExtResource("1_jcqn5")
+jump_speed = -450
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(16, -24, -8, -24, -8, 16, -24, 0, -16, 24, 16, 24, 8, 8, 16, 0)
@@ -121,7 +122,13 @@ target_position = Vector2(2000, 0)
 collision_mask = 5
 collide_with_areas = true
 
+[node name="SniperShot" type="Line2D" parent="Polygon2D/center"]
+points = PackedVector2Array(50, 0, 5000, 0)
+width = 1.0
+default_color = Color(0.670588, 0.505882, 0, 0.505882)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_a4bby")
 
 [node name="Control" type="Control" parent="."]

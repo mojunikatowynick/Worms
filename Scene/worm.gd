@@ -17,6 +17,7 @@ var weapon_active: bool = false
 @onready var sniper = $Polygon2D/center/WeaponSprite/Sniper
 @onready var granade = $Polygon2D/center/WeaponSprite/Granade
 @onready var bazooka = $Polygon2D/center/WeaponSprite/Bazooka
+@onready var sniper_shot = $Polygon2D/center/SniperShot
 
 #weapons
 var weapon_energy = 10000
@@ -24,7 +25,7 @@ var weapon_energy = 10000
 @onready var timer_weapon_energy = $Timers/FirePower
 
 signal weapon_shot(pos, direction, energy)
-signal weapon_shot_sniper(collision_point)
+signal weapon_shot_sniper(collision_point, direction, pos)
 signal dead
 
 func _ready():
@@ -32,6 +33,8 @@ func _ready():
 	sniper.call_deferred("set_visible", false)
 	granade.call_deferred("set_visible", false)
 	bazooka.call_deferred("set_visible", false)
+	sniper_shot.call_deferred("set_visible", false)
+	Global.weapon_chosen = "null"
 	
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -51,6 +54,7 @@ func push_back(center, energy, damage):
 		hp_change()
 
 func hp_change():
+	self.active = false
 	$Control/TextureProgressBar.value = hp
 
 func die_in_water():

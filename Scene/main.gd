@@ -19,7 +19,6 @@ var last_team = []
 var new_team = []
 var last_worm
 
-
 @onready var TEAM_number_1 = $TEAM1
 @onready var TEAM_number_2 = $TEAM2
 @onready var camera_vector: Vector2 = Vector2(0.7, 0.7)
@@ -106,6 +105,7 @@ func camera_control(delta):
 		pass
 		
 func _on_worm_weapon_shot_sniper(collision_point):
+
 	if collision_point != null:
 		projectile = sniper_scene.instantiate() as Area2D
 		projectile.position = collision_point
@@ -200,3 +200,6 @@ func _on_ui_weapon_sprite():
 		worm.weapon_sprite_enabler()
 	else:
 		pass
+
+func _on_ui_reload_game():
+	get_tree().reload_current_scene()

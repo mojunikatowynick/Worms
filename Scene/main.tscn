@@ -54,7 +54,7 @@ position = Vector2(-1151.56, 453)
 [node name="Timer" type="Node" parent="."]
 
 [node name="WormTimer" type="Timer" parent="Timer"]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [node name="RoundTimer" type="Timer" parent="Timer"]
@@ -77,6 +77,7 @@ one_shot = true
 [connection signal="weapon_shot_sniper" from="TEAM2/Worm8" to="." method="_on_worm_weapon_shot_sniper"]
 [connection signal="activate_worm" from="UI" to="." method="_on_ui_activate_worm"]
 [connection signal="next_worm" from="UI" to="." method="_on_ui_next_worm"]
+[connection signal="reload_game" from="UI" to="." method="_on_ui_reload_game"]
 [connection signal="weapon_sprite" from="UI" to="." method="_on_ui_weapon_sprite"]
 [connection signal="timeout" from="Timer/WormTimer" to="." method="_on_worm_timer_timeout"]
 [connection signal="timeout" from="Timer/RoundTimer" to="." method="_on_round_timer_timeout"]
