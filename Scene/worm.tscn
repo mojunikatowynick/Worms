@@ -163,6 +163,9 @@ texture_progress = ExtResource("5_mpmh3")
 [node name="FirePower" type="Timer" parent="Timers"]
 wait_time = 0.25
 
+[node name="JumpTimer" type="Timer" parent="Timers"]
+one_shot = true
+
 [node name="Animations" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animations"]
@@ -185,3 +188,4 @@ script = ExtResource("9_kldo5")
 player = NodePath("../..")
 
 [connection signal="timeout" from="Timers/FirePower" to="StateMachine/Active" method="_on_fire_power_timeout"]
+[connection signal="timeout" from="Timers/JumpTimer" to="StateMachine/Active" method="_on_timer_timeout"]

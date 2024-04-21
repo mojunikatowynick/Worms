@@ -6,18 +6,20 @@ class_name  Active
 @onready var AP = $"../../Animations/AnimationPlayer"
 @onready var sniper_ray = $"../../Polygon2D/center/SniperRay"
 var pre_wait: bool = false
+var djump: bool = false
 
 func Enter():
 	pre_wait = false
 	Global.weapon_chosen = "null"
 	await get_tree().create_timer(2).timeout
 	pre_wait = true
-	$"../../Polygon2D/center/CrossHairSprite".visible = true
 	player.weapon_active = true
 	zoom_camera = 0.7
 	
 func Physics_update(delta: float):
+	#print(djump)
 	
+
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(player.get_parent().get_parent().player_camera, "zoom", Vector2(zoom_camera, zoom_camera), 1)
@@ -48,16 +50,35 @@ func movement(_delta):
 		player.center_point.rotation_degrees -= 1
 	elif Input.is_action_pressed("down") and player.center_point.rotation_degrees <= 90:
 		player.center_point.rotation_degrees += 1
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed("jump"):
+		if player.is_on_floor():
 			player.velocity.y = player.jump_speed
 			if player.sprite_worm.scale.x == -1:
 				player.velocity.x = player.jump_speed/3
 			elif player.sprite_worm.scale.x == 1:
 				player.velocity.x = -player.jump_speed/3
+		elif player.is_on_floor() == false:
+			player.velocity.y = player.jump_speed*2
+			if player.sprite_worm.scale.x == 1:
+				player.velocity.x = player.jump_speed/6
+			elif player.sprite_worm.scale.x == -1:
+				player.velocity.x = -player.jump_speed/6
+		#djump = true
+		#$"../../Timers/JumpTimer".start()
+	#if djump:
+		#if Input.is_action_just_pressed("jump"):
+			#player.velocity.y = player.jump_speed*2
+			#if player.sprite_worm.scale.x == 1:
+				#player.velocity.x = player.jump_speed/6
+			#elif player.sprite_worm.scale.x == -1:
+				#player.velocity.x = -player.jump_speed/6
+		#else: 
+			#pass
 	if Input.is_action_just_pressed("zoomin") and zoom_camera <= 1:
 		self.zoom_camera += 0.05
 	if Input.is_action_just_pressed("zoomout")and zoom_camera >= 0.3:
 		self.zoom_camera -= 0.05
+
 	
 func weapon_handler():
 	if Global.weapon_chosen == "bazooka" or Global.weapon_chosen == "granade":
@@ -72,8 +93,14 @@ func weapon_handler():
 			fire_sniper()
 	else: 
 		pass
+	
+	if Global.weapon_chosen == "null":
+		$"../../Polygon2D/center/CrossHairSprite".call_deferred("set_visible", false)
+	else:
+		$"../../Polygon2D/center/CrossHairSprite".call_deferred("set_visible", true)
 
 func fire():
+	
 	AP.stop()
 	$"../../Polygon2D/center/PowerInd".visible = false
 	player.weapon_active = false
@@ -104,8 +131,13 @@ func _on_fire_power_timeout():
 	player.weapon_energy += 12500
 
 func weapon_dissapear():
+	Global.weapon_chosen = "null"
 	player.sniper.call_deferred("set_visible", false)
 	player.granade.call_deferred("set_visible", false)
 	player.bazooka.call_deferred("set_visible", false)
 
 
+
+
+func _on_JumpTimer_timeout():
+	djump = false

@@ -99,6 +99,7 @@ one_shot = true
 
 [node name="Logo" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -215,7 +216,6 @@ polygon = PackedVector2Array(24, -16, 48, -16, 48, 16, 24, 16)
 
 [node name="Arrow" type="Polygon2D" parent="WeaponMenu/ColorRect"]
 position = Vector2(125.035, 83)
-scale = Vector2(1, 1)
 color = Color(0.941176, 0.960784, 0.988235, 1)
 polygon = PackedVector2Array(-8.035, -8, 7.96499, 0, -8.035, 8)
 
@@ -234,7 +234,7 @@ text = "Bazooka"
 
 [node name="GranadeButton" type="Button" parent="WeaponMenu/WMContainer"]
 layout_mode = 2
-text = "Granade"
+text = "Grenade"
 
 [node name="SniperButton" type="Button" parent="WeaponMenu/WMContainer"]
 layout_mode = 2

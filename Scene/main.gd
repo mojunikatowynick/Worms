@@ -43,7 +43,8 @@ func _ready():
 func _process(delta):
 
 	if Input.is_action_just_pressed("fire") and Global.weapon_chosen == "null" and game_on:
-		$UI.pick_weapon()
+		if worm.active:
+			$UI.pick_weapon()
 	else:
 		pass
 	camera_control(delta)
@@ -130,6 +131,8 @@ func _on_ui_activate_worm():
 	first_team = both_teams.pick_random()
 	worm = first_team.front()
 	worm.active = true
+	first_team.erase(worm)
+	first_team.append(worm)
 	round_timer_on()
 	
 func _on_ui_next_worm():

@@ -14,7 +14,6 @@ func _ready():
 	label.text = "3"
 	
 func _physics_process(_delta):
-
 	
 	label.set_rotation(- self.rotation)
 	

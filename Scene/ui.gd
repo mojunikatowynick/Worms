@@ -17,7 +17,11 @@ func _ready():
 	$WeaponMenu.call_deferred("set_visible", false)
 	$WeaponMenu/ColorRect/Arrow.scale = Vector2(1, 1)
 	$Tooltip.call_deferred("set_visible", false)
-	
+
+func _process(_delta):
+	if Input.is_anything_pressed():
+		$WeaponMenu/WMButton.button_pressed = false
+		
 func round_start():
 	round_timer.call_deferred("set_visible", true)
 	$WeaponMenu.call_deferred("set_visible", true)
@@ -67,6 +71,7 @@ func end_game():
 func pick_weapon():
 	$Timer/Label3timer.start()
 	$Control/Label3.call_deferred("set_visible", true)
+	
 func _on_label_3_timer_timeout():
 	$Control/Label3.call_deferred("set_visible", false)
 
